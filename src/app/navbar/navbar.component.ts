@@ -1,7 +1,8 @@
 // src/app/navbar/navbar.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-navbar',
@@ -9,19 +10,19 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  theme: boolean = false; // Initialize theme as a boolean
 
-  isLoggedIn: boolean = false;
-  isCollapsed = false;
-
-  constructor(private authService: AuthService) {
-    this.isLoggedIn = this.authService.isLoggedIn();
+  toggleTheme() {
+    this.theme = !this.theme; // Toggle the theme boolean
   }
 
+  constructor(private router: Router, private message: NzMessageService) {}
   ngOnInit(): void {
+    throw new Error('Method not implemented.');
   }
 
-  logout() {
-    this.authService.logout();
-    this.isLoggedIn = false;
+  logout(): void {
+    this.message.success('Logged out successfully');
+    this.router.navigate(['/login']); // Assuming you have a login route
   }
 }
