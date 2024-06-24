@@ -8,20 +8,24 @@ import { AuthService } from './auth.service';
 })
 export class AppComponent {
   title = 'AmesoTextile';
-
-  isLoggedIn: boolean = false;
-
-  constructor(private authService: AuthService) {
-    this.isLoggedIn = this.authService.isLoggedIn();
+  theme = true; // true for dark theme, false for light theme
+  isCollapsed = false;
+  isMaximized = false;
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  toggleCollapsed(): void {
+    this.isCollapsed = !this.isCollapsed;
   }
 
-  login() {
-    this.authService.login();
-    this.isLoggedIn = true;
+  toggleMaximize(): void {
+    this.isMaximized = !this.isMaximized;
   }
 
-  logout() {
-    this.authService.logout();
-    this.isLoggedIn = false;
+  logout(): void {
+    // Implement your logout logic here
+    console.log('Logout clicked');
+    // Example: Redirect to login page
+    // this.router.navigate(['/login']); // Ensure Router is imported
   }
 }
